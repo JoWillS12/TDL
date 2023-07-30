@@ -10,6 +10,8 @@ import SwiftUI
 struct EditToDoListView: View {
     
     @ObservedObject var vm = EditToDoListViewModel()
+    var selectedTask: TaskItem?
+    var viewMode: ViewMode
     
     var body: some View {
         GeometryReader{geometry in
@@ -19,7 +21,7 @@ struct EditToDoListView: View {
                         Text("Your Task :")
                             .fontWeight(.bold)
                             .padding(.top, 30.0)
-                        TextField("Your Task", text: $vm.taskName)
+                        TextField("Your Task", text: $vm.tkName)
                             .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.05)
                             .padding([.leading, .trailing],0)
                             .cornerRadius(8)
@@ -31,7 +33,7 @@ struct EditToDoListView: View {
                         
                         Text("Description :")
                             .fontWeight(.bold)
-                        TextField("Description", text: $vm.taskDesc)
+                        TextField("Description", text: $vm.tkDesc)
                             .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.1)
                             .padding([.leading, .trailing],0)
                             .overlay(
@@ -42,30 +44,37 @@ struct EditToDoListView: View {
                         
                         Text("Task Due :")
                             .fontWeight(.bold)
-                        Toggle("Schedule Time", isOn: $vm.scheduleTime)
-                            .frame(width: geometry.size.width * 0.8)
-                        DatePicker("Due", selection: $vm.taskDue, displayedComponents: vm.displayComps())
+                        DatePicker("Due", selection: $vm.tkDue)
                             .frame(width: geometry.size.width * 0.8)
                         
                         
-                        Button(action: {
+                        switch viewMode {
+                        case .add:
                             // Code to handle the "Save" button action
-                            print("Save button tapped!")
-                        }) {
-                            HStack {
-                                Text("Save")
-                                    .fontWeight(.bold)
+                            ActionButton(label: "Save") {
+                                vm.createTask()
+                                vm.clearStates()
                             }
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(Color.green)
-                            .cornerRadius(8)
+                            .padding(.top, 40.0)
                             
+                        case .edit:
+                            // Code to handle the "Update" button action
+                            ActionButton(label: "Update") {
+                                vm.updateTask()
+                            }
+                            .padding(.top, 40.0)
                         }
-                        .padding(.top, 40.0)
-
+//
                     }
                     Spacer()
+                }
+                .onAppear {
+                    if let selectedTask = selectedTask {
+                        vm.selectedTaskItem = selectedTask
+                        vm.tkName = selectedTask.taskName ?? ""
+                        vm.tkDesc = selectedTask.taskDesc ?? ""
+                        vm.tkDue = selectedTask.taskDue ?? Date()
+                    }
                 }
                 .frame(width: geometry.size.width * 1)
             }
@@ -73,8 +82,10 @@ struct EditToDoListView: View {
     }
 }
 
+
 struct EditToDoListView_Previews: PreviewProvider {
     static var previews: some View {
-        EditToDoListView()
+        EditToDoListView(viewMode: .edit)
     }
 }
+

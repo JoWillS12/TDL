@@ -6,16 +6,53 @@
 //
 
 import Foundation
-import SwiftUI
+import CoreData
 
 class EditToDoListViewModel:ObservableObject{
     
-    @Published var taskName: String = ""
-    @Published var taskDesc: String = ""
-    @Published var taskDue: Date = Date()
-    @Published var scheduleTime: Bool = false
+    @Published var tasks: [TaskItem] = []
     
-    func displayComps() -> DatePickerComponents{
-        return scheduleTime ? [.hourAndMinute, .date] : [.date]
+    let dataService = PersistenceController.shared
+    
+    @Published var selectedTaskItem: TaskItem?
+    @Published var tkName: String = ""
+    @Published var tkDesc: String = ""
+    @Published var tkDue: Date = Date()
+    
+    
+    init() {
+        getAllTasks()
     }
+    
+    func getAllTasks() {
+        tasks = dataService.read()
+    }
+    
+    func createTask() {
+        dataService.create(taskName: tkName, taskDesc: tkDesc, taskDue: tkDue)
+        getAllTasks()
+    }
+    
+    func updateTask(taskName: String? = nil, taskDesc: String? = nil, taskDue: Date? = nil) {
+        if let task = selectedTaskItem {
+            dataService.update(entity: task, taskName: tkName, taskDesc: tkDesc, taskDue: tkDue)
+            getAllTasks()
+        }
+    }
+    
+
+
+    
+    func deleteTask(task: TaskItem) {
+        dataService.delete(task)
+        getAllTasks()
+    }
+    
+    func clearStates() {
+        tkName = ""
+        tkDesc = ""
+        tkDue = Date()
+    }
+    
 }
+

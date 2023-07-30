@@ -17,6 +17,8 @@
 		173914F42A750E320025F824 /* ToDoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173914F32A750E320025F824 /* ToDoListViewModel.swift */; };
 		173914F82A75165A0025F824 /* EditToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173914F72A75165A0025F824 /* EditToDoListView.swift */; };
 		173914FA2A7516800025F824 /* EditToDoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173914F92A7516800025F824 /* EditToDoListViewModel.swift */; };
+		176E1EC52A76490A0054CA35 /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E1EC42A76490A0054CA35 /* ButtonType.swift */; };
+		176E1EC82A764D5D0054CA35 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176E1EC72A764D5D0054CA35 /* ActionButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		173914F32A750E320025F824 /* ToDoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewModel.swift; sourceTree = "<group>"; };
 		173914F72A75165A0025F824 /* EditToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditToDoListView.swift; sourceTree = "<group>"; };
 		173914F92A7516800025F824 /* EditToDoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditToDoListViewModel.swift; sourceTree = "<group>"; };
+		176E1EC42A76490A0054CA35 /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
+		176E1EC72A764D5D0054CA35 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 		173914EF2A750E050025F824 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				176E1EC32A7648E80054CA35 /* Enum */,
 				173914F02A750E0E0025F824 /* View */,
 			);
 			path = ToDoList;
@@ -105,6 +110,7 @@
 		173914F52A75163C0025F824 /* EditToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				176E1EC62A764D430054CA35 /* Component */,
 				173914F62A7516470025F824 /* View */,
 			);
 			path = EditToDoList;
@@ -117,6 +123,22 @@
 				173914F92A7516800025F824 /* EditToDoListViewModel.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		176E1EC32A7648E80054CA35 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				176E1EC42A76490A0054CA35 /* ButtonType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		176E1EC62A764D430054CA35 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				176E1EC72A764D5D0054CA35 /* ActionButton.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,9 +212,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				173914F42A750E320025F824 /* ToDoListViewModel.swift in Sources */,
+				176E1EC52A76490A0054CA35 /* ButtonType.swift in Sources */,
 				173914E52A750D1A0025F824 /* Persistence.swift in Sources */,
 				173914FA2A7516800025F824 /* EditToDoListViewModel.swift in Sources */,
 				173914DE2A750D180025F824 /* ContentView.swift in Sources */,
+				176E1EC82A764D5D0054CA35 /* ActionButton.swift in Sources */,
 				173914F82A75165A0025F824 /* EditToDoListView.swift in Sources */,
 				173914DC2A750D180025F824 /* ToDoListApp.swift in Sources */,
 				173914E82A750D1A0025F824 /* ToDoList.xcdatamodeld in Sources */,
